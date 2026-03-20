@@ -1,6 +1,24 @@
 {
   "version": 2,
+  "functions": {
+    "api/serve.js": {
+      "includeFiles": "*.html"
+    }
+  },
   "rewrites": [
-    { "source": "/dashboard", "destination": "/dashboard.html" }
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/site", "destination": "/api/serve?p=site" },
+    { "source": "/platform-status", "destination": "/api/serve?p=platform-status" },
+    { "source": "/infrastructure", "destination": "/api/serve?p=infrastructure" },
+    { "source": "/documentation", "destination": "/api/serve?p=documentation" },
+    { "source": "/about", "destination": "/api/serve?p=about" },
+    { "source": "/api-tokens", "destination": "/api/serve?p=api-tokens" },
+    { "source": "/maintenance", "destination": "/api/serve?p=maintenance" },
+    { "source": "/compliance", "destination": "/api/serve?p=compliance" },
+    { "source": "/deployment", "destination": "/api/serve?p=deployment" },
+    { "source": "/integrations", "destination": "/api/serve?p=integrations" },
+    { "source": "/credentials", "destination": "/api/serve?p=credentials" },
+    { "source": "/migration", "destination": "/api/serve?p=migration" },
+    { "source": "/seo-report", "destination": "/api/serve?p=seo-report" }
   ]
 }

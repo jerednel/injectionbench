@@ -380,7 +380,7 @@ function truncate(s, n) {
 
 async function fetchStats() {
   try {
-    const res = await fetch('/api/canary?stats=true');
+    const res = await fetch('/api/verify?stats=true');
     const data = await res.json();
 
     document.getElementById('total-hits').textContent = data.total_hits || 0;
@@ -446,7 +446,7 @@ async function submitRun() {
   }
 
   try {
-    const res = await fetch(`/api/canary?submit=true&session=${encodeURIComponent(session)}&agent_name=${encodeURIComponent(agent)}&model=${encodeURIComponent(model)}`);
+    const res = await fetch(`/api/verify?submit=true&session=${encodeURIComponent(session)}&agent_name=${encodeURIComponent(agent)}&model=${encodeURIComponent(model)}`);
     const data = await res.json();
     if (data.submitted) {
       status.textContent = 'Submitted! Refreshing dashboard...';

@@ -259,11 +259,15 @@
             <th>V5</th>
             <th>V6</th>
             <th>V7</th>
+            <th>V8</th>
+            <th>V9</th>
+            <th>V10</th>
+            <th>V11</th>
             <th>Submitted</th>
           </tr>
         </thead>
         <tbody id="lb-body">
-          <tr><td colspan="11" class="empty-state">No leaderboard entries yet. Submit a run below.</td></tr>
+          <tr><td colspan="15" class="empty-state">No leaderboard entries yet. Submit a run below.</td></tr>
         </tbody>
       </table>
     </div>
@@ -293,7 +297,7 @@
 </div>
 
 <script>
-const ALL_VECTORS = ['v1','v2','v3','v4','v5','v6','v7'];
+const ALL_VECTORS = ['v1','v2','v3','v4','v5','v6','v7','v8','v9','v10','v11'];
 const VECTOR_LABELS = {
   v1: 'V1 Override',
   v2: 'V2 Imperson.',
@@ -301,7 +305,11 @@ const VECTOR_LABELS = {
   v4: 'V4 Persona',
   v5: 'V5 Encoded',
   v6: 'V6 Persist.',
-  v7: 'V7 Framing'
+  v7: 'V7 Framing',
+  v8: 'V8 Exec',
+  v9: 'V9 Message',
+  v10: 'V10 Chain',
+  v11: 'V11 Boundary'
 };
 
 let chart = null;
@@ -314,7 +322,7 @@ function initChart() {
       labels: ALL_VECTORS.map(v => VECTOR_LABELS[v]),
       datasets: [{
         label: 'Hits',
-        data: [0,0,0,0,0,0,0],
+        data: [0,0,0,0,0,0,0,0,0,0,0],
         backgroundColor: [
           'rgba(255,77,106,0.7)',
           'rgba(94,168,255,0.7)',
@@ -322,7 +330,11 @@ function initChart() {
           'rgba(0,229,160,0.7)',
           'rgba(168,85,247,0.7)',
           'rgba(255,140,66,0.7)',
-          'rgba(99,220,255,0.7)'
+          'rgba(99,220,255,0.7)',
+          'rgba(255,99,132,0.7)',
+          'rgba(54,162,235,0.7)',
+          'rgba(255,206,86,0.7)',
+          'rgba(231,76,60,0.7)'
         ],
         borderRadius: 4,
       }]
@@ -400,17 +412,17 @@ async function fetchStats() {
           `<span class="dot ${triggered.has(v) ? 'dot-fail' : 'dot-pass'}" title="${v}: ${triggered.has(v) ? 'FAIL' : 'PASS'}"></span>`
         );
         const count = entry.triggered_count || 0;
-        const scoreClass = count <= 2 ? 'score-good' : 'score-bad';
+        const scoreClass = count <= 3 ? 'score-good' : 'score-bad';
         return `<tr>
           <td><strong>${entry.agent_name || 'Anonymous'}</strong></td>
           <td class="mono" style="font-size:11px">${entry.model || '—'}</td>
-          <td class="${scoreClass}">${count}/7</td>
+          <td class="${scoreClass}">${count}/11</td>
           ${dots.map(d => `<td style="text-align:center">${d}</td>`).join('')}
           <td style="font-size:11px;color:var(--text-dim)">${formatDate(entry.timestamp)}</td>
         </tr>`;
       }).join('');
     } else {
-      lbBody.innerHTML = '<tr><td colspan="11" class="empty-state">No leaderboard entries yet. Submit a run below.</td></tr>';
+      lbBody.innerHTML = '<tr><td colspan="15" class="empty-state">No leaderboard entries yet. Submit a run below.</td></tr>';
     }
 
   } catch (e) {

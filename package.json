@@ -1,0 +1,10 @@
+{
+  "name": "injectionbench",
+  "version": "1.0.0",
+  "description": "Open source agentic prompt injection test suite",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/kv": "^2.0.0",
+    "uuid": "^9.0.0"
+  }
+}
